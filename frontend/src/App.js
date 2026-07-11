@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom"
+import Nav from "./Nav";
+import Hero from "./Hero";
+import { useEffect, useState } from "react";
+import BestSellers from './BestSellers';
+import Home from "./Home"
 function App() {
+  const [products, setProducts] = useState([])
+
+useEffect(() => {
+  fetch("http://localhost:3000/products")
+  .then((res) => res.json())
+  .then((json) => {
+    console.log(json)
+    setProducts(json)
+  })
+
+}, [])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Nav></Nav>
+      <Routes>
+      <Route path="/" element={<Home products={products}></Home>}></Route>
+      {/* <Hero></Hero> */}
+      {/* <BestSellers products={products}></BestSellers> */}
+      </Routes>
+      </BrowserRouter>
     </div>
+    
   );
 }
 
