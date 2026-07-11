@@ -1,6 +1,12 @@
 import {NavLink} from "react-router-dom"
+ import { FaShoppingCart } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import {useState} from "react"
+
+
 
 function Nav() {
+    const [toggle, setToggle] = useState(false)
 
 
 
@@ -14,9 +20,19 @@ function Nav() {
          </div>
          </div>
          {/* <div className="links"> */}
-         <NavLink className="link" to="/home">Home</NavLink>
-         <NavLink className="link" to="/products">Products</NavLink>
-         <NavLink className="link" to="/cart">Cart</NavLink>
+         <NavLink className="link" to="/">Home</NavLink>
+         <NavLink className="link" to="/products">Shop</NavLink>
+          <NavLink className="link" to="/about">About</NavLink>
+          <NavLink className="link" to="/contacts">Contact</NavLink>
+          <FaUser onClick={() => setToggle(!toggle)} />
+            {
+                toggle && <div className="dropdown">
+               <NavLink className="link" to="/signup">Sign Up</NavLink>
+               <NavLink className="link" to="/login">Login</NavLink>
+               <button className="logout-button">Logout</button>
+               </div>
+            }
+         <NavLink className="link" to="/cart"><FaShoppingCart /></NavLink>
          {/* </div> */}
         </header>
     )

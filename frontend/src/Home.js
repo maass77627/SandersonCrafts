@@ -1,5 +1,6 @@
 import BestSellers from "./BestSellers"
 import Hero from "./Hero"
+import Break from "./Break"
 
 
 function Home({products}) {
@@ -11,6 +12,7 @@ function Home({products}) {
         
         <Hero></Hero>
         <BestSellers products={products} ></BestSellers>
+        <Break></Break>
         </div>
     )
 }
