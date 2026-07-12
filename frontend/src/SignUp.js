@@ -37,7 +37,7 @@ function handleSubmit(e) {
     })
     .then((res) => {
         if (!res.ok) {
-         console.log(res.status)
+        throw new Error(`Request failed: ${res.status}`);
         }
         return res.json()
     }) 
@@ -45,7 +45,7 @@ function handleSubmit(e) {
         console.log(json)
     })
     .catch((error) =>{
-        console.error(error.full_messages)
+        console.error(error.message)
     })
 
 }

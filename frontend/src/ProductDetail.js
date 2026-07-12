@@ -2,14 +2,14 @@ import {useParams} from "react-router-dom"
 import { FaHeart } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
+import { useState } from "react";
 
 
 
-
-function ProductDetail({products}) {
+function ProductDetail({products, setCart}) {
     const {id} = useParams()
     const product = products.find((pro) => pro.id === Number(id))
-
+     const [quantity, setQuantity] = useState()
 
 
         if (!product) {
@@ -29,7 +29,7 @@ function ProductDetail({products}) {
             <h2>${product.price}0</h2>
             <p>{product.description}</p>
             <label>Quantity:</label>
-            <input className="detail-quantity" type="number"></input>
+            <input onChange={(e) => setQuantity(e.target.value)} min="1" max="10" value={quantity} className="detail-quantity" type="number"></input>
             <button className="detail-cart-button">Add to Cart</button>
             <button className="detail-buy-button">Buy Now</button>
             </section>

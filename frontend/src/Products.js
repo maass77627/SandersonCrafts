@@ -12,12 +12,18 @@ const [maxPrice, setMaxPrice] = useState(100)
 
 // }
 
-const updatedProducts = selectedCategory ? products.filter((pro) => pro.category === selectedCategory) : products
+const updatedProducts = (selectedCategory ? products.filter((pro) => {
+    if (selectedCategory === "All") {
+        return true
+    }
+    return pro.category === selectedCategory
+    }) : products).filter((item) => item.price < maxPrice)
 
     return (
-        <div className="Products">
+        <div className="products">
             <header className="product-header"><h1>Shop</h1></header>
-            <header className="product-header-two">
+             <header className="product-header-two">
+                <p>Showing all products</p>
                         <label>Sort By</label>
                         <select>
                             <option>Blankets</option>
@@ -26,8 +32,9 @@ const updatedProducts = selectedCategory ? products.filter((pro) => pro.category
                             <option>Baby Items</option>
                             <option>Home Decor</option>
                         </select>
-                        </header>
+                        </header> 
             <main className="product-main">
+                
                 <aside className="product-aside">
                     <div className="product-categories">
                     <h2>Categories</h2>

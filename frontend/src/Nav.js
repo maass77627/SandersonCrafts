@@ -5,9 +5,9 @@ import {useState} from "react"
 
 
 
-function Nav() {
+function Nav({currentUser, handleLogout}) {
     const [toggle, setToggle] = useState(false)
-
+       console.log(currentUser)
 
 
     return (
@@ -19,21 +19,23 @@ function Nav() {
          <p>crafts</p>
          </div>
          </div>
-         {/* <div className="links"> */}
+        
          <NavLink className="link" to="/">Home</NavLink>
          <NavLink className="link" to="/products">Shop</NavLink>
           <NavLink className="link" to="/about">About</NavLink>
           <NavLink className="link" to="/contacts">Contact</NavLink>
+          {currentUser?.admin && <NavLink to="/admin">Admin Dashboard</NavLink>}
+
           <FaUser onClick={() => setToggle(!toggle)} />
             {
                 toggle && <div className="dropdown">
-               <NavLink className="link" to="/signup">Sign Up</NavLink>
-               <NavLink className="link" to="/login">Login</NavLink>
-               <button className="logout-button">Logout</button>
+              { !currentUser && <NavLink className="link" to="/signup">Sign Up</NavLink> }
+              { !currentUser && <NavLink className="link" to="/login">Login</NavLink> }
+               <button onClick={() => handleLogout()} className="logout-button">Logout</button>
                </div>
             }
          <NavLink className="link" to="/cart"><FaShoppingCart /></NavLink>
-         {/* </div> */}
+         
         </header>
     )
 }
