@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import {useState} from "react";
 import AdminProductDashBoard from "./AdminProductDashBoard"
 
-function AdminDashBoard(products, setProducts) {
+function AdminDashBoard({products, setProducts}) {
 
 const [toggleProducts, setToggleProducts] = useState(false)
 
@@ -18,7 +18,7 @@ const [toggleProducts, setToggleProducts] = useState(false)
                     <button className="admin-option-button" onClick={() => setToggleProducts(!toggleProducts)}>Products</button>
                 </aside>
                {/* <div className="dashboard"> */}
-                {toggleProducts && <AdminProductDashBoard  products={products}></AdminProductDashBoard>}
+                {toggleProducts && <AdminProductDashBoard setProducts={setProducts}  products={products}></AdminProductDashBoard>}
 
             {/* </div> */}
                

@@ -1,9 +1,15 @@
 
 
-function BestSellers({products}) {
+function BestSellers({products, setCart, bestsellers}) {
+console.log(bestsellers)
 
+    function handleClick(pro) {
+        setCart((prev) => [...prev, {...pro, quantity: 1}])
+    }
 
-
+    if (!bestsellers) {
+        return
+    }
 
     return (
         <div className="bestsellerwrap">
@@ -11,14 +17,14 @@ function BestSellers({products}) {
         <div className="bestseller">
             {/* <h1>Shop Our BestSellers</h1> */}
            {
-            products.map((pro) => (
+            bestsellers.map((pro) => (
                 <div key={pro.id} className="bestseller-card">
-                    <img className="bestseller-image" src="/blanket.webp"></img>
+                    <img className="bestseller-image" src={pro.image_url}></img>
                     <div className="bestseller-text-wrap">
                     <strong><p>{pro.name}</p></strong>
                     <p>${pro.price.slice(0,2)}</p>
                     </div>
-                    <button className="bestseller-button">Add to Cart</button>
+                    <button onClick={() => handleClick(pro)} className="bestseller-button">Add to Cart</button>
 
                 </div>
 

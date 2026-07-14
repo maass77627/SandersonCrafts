@@ -2,15 +2,20 @@
 import {useState} from "react";
 import {Link} from "react-router-dom"
 
-function Products({products, categories}) {
+function Products({products, categories, fetchProducts}) {
 const [selectedCategory, setSelectedCategory] = useState("")
 const [maxPrice, setMaxPrice] = useState(100)
+// const [feature, setFeature] = useState("")
 // const [setCategoryFilter, ]
 
 // function handleCategoryFilter(cat) {
 //     console.log(cat)
 
 // }
+
+function handleChange(e) {
+    fetchProducts(e.target.value)
+}
 
 const updatedProducts = (selectedCategory ? products.filter((pro) => {
     if (selectedCategory === "All") {
@@ -25,12 +30,13 @@ const updatedProducts = (selectedCategory ? products.filter((pro) => {
              <header className="product-header-two">
                 <p>Showing all products</p>
                         <label>Sort By</label>
-                        <select>
-                            <option>Blankets</option>
-                            <option>Hats</option>
-                            <option>Scarves</option>
-                            <option>Baby Items</option>
-                            <option>Home Decor</option>
+                        <select onChange={(e) => handleChange(e)} >
+                            <option value="" name="none">none</option>
+                            <option value="highest_reviews" name="highest_reviews">highest_reviews</option>
+                            <option value="most_purchased" name="most_purchased">most_purchased</option>
+                            <option value="price_high" name="price_high">price_high</option>
+                            <option value="price_low" name="price_low">price_low</option>
+                            <option value="newest" name="newest">newest</option>
                         </select>
                         </header> 
             <main className="product-main">
@@ -65,13 +71,13 @@ const updatedProducts = (selectedCategory ? products.filter((pro) => {
                     updatedProducts.map((pro) => (
                         <div key={pro.id} className="product-card">
                             <Link to={`/products/${pro.id}`}>
-                    <img className="product-image" src="/blanket.webp"></img>
+                    <img className="product-image" src={pro.image_url}></img>
                     </Link>
                     <div className="product-text-wrap">
                     <strong><p>{pro.name}</p></strong>
                     <p>${pro.price.slice(0,2)}</p>
                     </div>
-                    {/* <button className="product-button">Add to Cart</button> */}
+                    
 
                 </div>
                     ))

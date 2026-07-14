@@ -13,7 +13,7 @@ function Nav({currentUser, handleLogout}) {
     return (
         <header className="nav">
         <div className="nav-logo">
-         <img className="nav-image" src="./yarn.webp"></img>
+         <img className="nav-image" src="/yarn.webp"></img> 
          <div className="text-wrap">
          <h3 className="nav-text">Sanderson Sister</h3>
          <p>crafts</p>
