@@ -53,7 +53,7 @@ function Cart({cart, setCart}) {
               <tbody>
                 {
                     cart.map((item) => (
-                        <tr>
+                        <tr key={item.id}>
                            
                      <td>
                         <div className="item-wrap">
@@ -62,7 +62,7 @@ function Cart({cart, setCart}) {
                     </div>
                     </td>
                 <td>${item.price.slice(0,2)}</td>
-                <td><button onClick={() => decrementQuantity(item.id)}>-</button>{item.quantity}<button onClick={() => incrementQuantity(item.id)}>+</button></td>
+                <td><div className="quant-wrap"><button onClick={() => decrementQuantity(item.id)}>-</button>{item.quantity}<button onClick={() => incrementQuantity(item.id)}>+</button></div></td>
                 <td>${item.quantity*item.price}</td>
                 <td><FaTrash onClick={() => deleteCartItem(item)} /></td>
               </tr>
@@ -71,8 +71,10 @@ function Cart({cart, setCart}) {
                 
               </tbody>
             </table>
+            <div className="checkout-container">
             <p className="cart-total">Cart Total: ${subtotal}.00</p>
             <button onClick={() => handleCheckout()} className="checkout-button">Checkout</button>
+            </div>
         </div>
     )
 }

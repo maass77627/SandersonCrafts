@@ -1,12 +1,13 @@
 
 import { useState} from "react"
-
+import { useNavigate } from "react-router-dom"
 function Login({setCurrentUser}) {
     const [formData, setFormData] = useState({
     name: "",
     password: ""
   });
 
+  const navigate = useNavigate()
 
   function handleChange(e) {
     setFormData((prev) => ({...prev, [e.target.name]: e.target.value}))
@@ -42,6 +43,9 @@ function Login({setCurrentUser}) {
         console.error(error.message)
     })
 
+
+    navigate("/")
+
 }
 
 
@@ -51,6 +55,7 @@ function Login({setCurrentUser}) {
 
     return (
         <div className="login-page">
+            <h1>Login</h1>
         <form onSubmit={(e) => handleSubmit(e)} className="login-form">
              <label>Name</label>
             <input onChange={(e) => handleChange(e)} type="text" name="name" value={formData.name}></input>

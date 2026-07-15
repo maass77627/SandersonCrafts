@@ -60,7 +60,7 @@ function decrementQuantity() {
             </section>
             <section className="detail-section">
             <h1>{product.name}</h1>
-            <p>{"⭐".repeat(product.average_rating.slice(0,1))}  ({product.reviews.length} reviews)</p>
+            <p>{"⭐".repeat(product.average_rating)}  ({product.reviews.length} reviews)</p>
             <h2>${product.price}0</h2>
             <p>{product.description}</p>
             <label>Quantity:</label>

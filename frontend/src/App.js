@@ -15,6 +15,7 @@ import About from "./About";
 import Contact from "./Contact"
 import Cart from "./Cart"
 import Checkout from "./Checkout"
+import UserPage from "./UserPage"
 
 function App() {
   const [products, setProducts] = useState([])
@@ -110,8 +111,10 @@ const categories = [ "All", ...new Set(products.map((pro) => pro.category))]
       <Route path="/" element={<Home bestsellers={bestsellers} reviews={reviews} setCart={setCart} currentUser={currentUser}  products={products}></Home>}></Route>
       <Route path="/products" element={<Products fetchProducts={fetchProducts} categories={categories} products={products}></Products>}></Route>
       <Route path="/products/:id" element={<ProductDetail setCart={setCart} categories={categories} products={products}></ProductDetail>}></Route>
-      <Route path="/signup" element={<SignUp ></SignUp>}></Route>
-      <Route path="/login" element={<Login setCurrentUser={setCurrentUser} ></Login>}></Route>
+      {/* <Route path="/signup" element={<SignUp ></SignUp>}></Route>
+      <Route path="/login" element={<Login setCurrentUser={setCurrentUser} ></Login>}></Route> */}
+       <Route path="/signup" element={<UserPage ></UserPage>}></Route>
+      <Route path="/login" element={<UserPage setCurrentUser={setCurrentUser} ></UserPage>}></Route>
        <Route path="/admin" element={<AdminDashBoard setProducts={setProducts} products={products} ></AdminDashBoard>}></Route>
        <Route path="/about" element={<About ></About>}></Route>
        <Route path="/contacts" element={<Contact ></Contact>}></Route>

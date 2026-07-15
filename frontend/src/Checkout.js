@@ -14,6 +14,7 @@ function Checkout({cart}) {
             <div className="checkout-main">
                <CheckoutShipping></CheckoutShipping>
                <CheckoutOrderSum cart={cart}></CheckoutOrderSum>
+               
             </div>
         </div>
     )

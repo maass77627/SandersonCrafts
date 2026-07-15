@@ -15,19 +15,20 @@ function CheckoutShipping() {
         <div className="shipping">
             <h1>Shipping Information</h1>
             <label>Full Name</label>
-            <input></input>
+            <input className="input" type="text"></input>
             <label>Email</label>
-            <input></input>
+            <input className="input" type="text"></input>
             <label>Address</label>
-            <input></input>
-            <input></input>
+            <input className="input" type="text"></input>
+            <input className="input" type="text"></input>
             <label>City</label>
-            <input></input>
+            <input className="input" type="text"></input>
             <label>State</label>
-            <input></input>
+            <input className="input" type="text"></input>
             <label>Zip Code</label>
+            <input className="input" type="text"></input>
             <label>Country</label>
-            <input></input>
+            <input className="input" type="text"></input>
             {/* <input></input> */}
 
         </div>

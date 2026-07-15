@@ -1,8 +1,8 @@
 
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function SignUp() {
-
+const navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: "",
         password: "",
@@ -52,6 +52,7 @@ function handleSubmit(e) {
 
     return (
         <div className="signup-page">
+            <h1>SignUp</h1>
         <form className="signup-form" onSubmit={(e) => handleSubmit(e)}>
             <label>Name</label>
             <input onChange={(e) => handleChange(e)} type="text" name="name" value={formData.name}></input>
