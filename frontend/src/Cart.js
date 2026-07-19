@@ -12,10 +12,12 @@ function Cart({cart, setCart}) {
              setCart(updatedCart)
     }
 
-    const subtotal = cart.reduce((amount, item) => amount + (item.price*item.quantity), 0)
+    const subtotal = cart?.reduce((amount, item) => amount + (item.price*item.quantity), 0)
         console.log(subtotal)
+        
 
         function handleCheckout() {
+            // setCart((prev) => [...prev, sub: subtotal, ])
             console.log(cart)
             navigate("/checkout")
         }
@@ -61,7 +63,7 @@ function Cart({cart, setCart}) {
                     <img className="cart-image" src={item.image_url}></img>
                     </div>
                     </td>
-                <td>${item.price.slice(0,2)}</td>
+                <td>${item?.price?.slice(0,2)}</td>
                 <td><div className="quant-wrap"><button onClick={() => decrementQuantity(item.id)}>-</button>{item.quantity}<button onClick={() => incrementQuantity(item.id)}>+</button></div></td>
                 <td>${item.quantity*item.price}</td>
                 <td><FaTrash onClick={() => deleteCartItem(item)} /></td>

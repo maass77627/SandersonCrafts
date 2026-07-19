@@ -5,7 +5,7 @@ import {useState} from "react"
 
 
 
-function Nav({currentUser, handleLogout}) {
+function Nav({currentUser, handleLogout, cart}) {
     const [toggle, setToggle] = useState(false)
        console.log(currentUser)
 
@@ -34,7 +34,7 @@ function Nav({currentUser, handleLogout}) {
                <button onClick={() => handleLogout()} className="logout-button">Logout</button>
                </div>
             }
-         <NavLink className="link" to="/cart"><FaShoppingCart /></NavLink>
+         <NavLink className="link" to="/cart"><FaShoppingCart /> {cart?.length}</NavLink>
          
         </header>
     )

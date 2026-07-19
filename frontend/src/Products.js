@@ -70,10 +70,12 @@ const updatedProducts = (selectedCategory ? products.filter((pro) => {
                 {
                     updatedProducts.map((pro) => (
                         <div key={pro.id} className="product-card">
+                             
                             <Link to={`/products/${pro.id}`}>
                     <img className="product-image" src={pro.image_url}></img>
                     </Link>
                     <div className="product-text-wrap">
+                        {"⭐".repeat(pro.average_rating)}
                     <strong><p>{pro.name}</p></strong>
                     <p>${pro.price.slice(0,2)}</p>
                     </div>

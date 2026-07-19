@@ -1,4 +1,4 @@
-
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 
 function Review({review}) {
@@ -10,6 +10,7 @@ function Review({review}) {
 
     return (
         <div className="review">
+            <FaTrash/>
             <div className="review-card">
            <div className="review-header">
             <h4>{review.user.name}</h4>

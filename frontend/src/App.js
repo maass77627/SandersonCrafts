@@ -23,6 +23,8 @@ function App() {
 const [cart, setCart] = useState([])
 const [reviews, setReviews] = useState([])
 const [bestsellers, setBestSellers] = useState([])
+const [orders, setOrders] = useState([])
+
 
  function handleLogout() {
   fetch("http://localhost:3000/logout", {
@@ -92,6 +94,16 @@ useEffect(() => {
 // }, [])
 
 useEffect(() => {
+  fetch("http://localhost:3000/orders")
+  .then((res) => res.json())
+  .then((json) => {
+    console.log(json)
+    setOrders(json)
+  })
+
+}, [])
+
+useEffect(() => {
   fetch("http://localhost:3000/reviews")
   .then((res) => res.json())
   .then((json) => {
@@ -101,25 +113,25 @@ useEffect(() => {
 
 }, [])
 
-const categories = [ "All", ...new Set(products.map((pro) => pro.category))]
+         const categories = [ "All", ...new Set(products?.map((pro) => pro.category))]
 
   return (
     <div className="App">
       <BrowserRouter>
-      <Nav handleLogout={handleLogout} currentUser={currentUser}></Nav>
+      <Nav cart={cart} handleLogout={handleLogout} currentUser={currentUser}></Nav>
       <Routes>
-      <Route path="/" element={<Home bestsellers={bestsellers} reviews={reviews} setCart={setCart} currentUser={currentUser}  products={products}></Home>}></Route>
+      <Route path="/" element={<Home setReviews={setReviews} bestsellers={bestsellers} reviews={reviews} setCart={setCart} currentUser={currentUser}  products={products}></Home>}></Route>
       <Route path="/products" element={<Products fetchProducts={fetchProducts} categories={categories} products={products}></Products>}></Route>
-      <Route path="/products/:id" element={<ProductDetail setCart={setCart} categories={categories} products={products}></ProductDetail>}></Route>
+      <Route path="/products/:id" element={<ProductDetail cart={cart} setCart={setCart} categories={categories} products={products}></ProductDetail>}></Route>
       {/* <Route path="/signup" element={<SignUp ></SignUp>}></Route>
       <Route path="/login" element={<Login setCurrentUser={setCurrentUser} ></Login>}></Route> */}
        <Route path="/signup" element={<UserPage ></UserPage>}></Route>
       <Route path="/login" element={<UserPage setCurrentUser={setCurrentUser} ></UserPage>}></Route>
-       <Route path="/admin" element={<AdminDashBoard setProducts={setProducts} products={products} ></AdminDashBoard>}></Route>
+       <Route path="/admin" element={<AdminDashBoard orders={orders} setProducts={setProducts} products={products} ></AdminDashBoard>}></Route>
        <Route path="/about" element={<About ></About>}></Route>
        <Route path="/contacts" element={<Contact ></Contact>}></Route>
        <Route path="/cart" element={<Cart setCart={setCart} cart={cart} ></Cart>}></Route>
-      <Route path="/checkout" element={<Checkout cart={cart} ></Checkout>}></Route>
+      <Route path="/checkout" element={<Checkout setCart={setCart} currentUser={currentUser} cart={cart} ></Checkout>}></Route>
       </Routes>
       </BrowserRouter>
     </div>

@@ -1,12 +1,29 @@
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import AdminProductDashBoard from "./AdminProductDashBoard"
+import AdminOrderDashBoard from "./AdminOrderDashBoard"
 
-function AdminDashBoard({products, setProducts}) {
+function AdminDashBoard({products, setProducts, orders}) {
 
 const [toggleProducts, setToggleProducts] = useState(false)
+const [toggleOrders, setToggleOrders] = useState(false)
 
 
+
+function handleToggles(e) {
+    console.log(e.target.value)
+    switch (e.target.value) {
+        case "orders":
+        setToggleOrders(true)
+        setToggleProducts(false)
+        break
+        case "products":
+        setToggleOrders(false)
+        setToggleProducts(true)
+        break
+    }
+
+}
 
 
     return (
@@ -15,10 +32,12 @@ const [toggleProducts, setToggleProducts] = useState(false)
             <main className="admin-main">
                 <aside className="admin-options">
                     <h3>Options</h3>
-                    <button className="admin-option-button" onClick={() => setToggleProducts(!toggleProducts)}>Products</button>
+                    <button value="products" className="admin-option-button" onClick={(e) => handleToggles(e)}>Products</button>
+                    <button value="orders" className="admin-option-button" onClick={(e) => handleToggles(e)}>Orders</button>
                 </aside>
                {/* <div className="dashboard"> */}
                 {toggleProducts && <AdminProductDashBoard setProducts={setProducts}  products={products}></AdminProductDashBoard>}
+                 {toggleOrders && <AdminOrderDashBoard orders={orders} setProducts={setProducts}  products={products}></AdminOrderDashBoard>}
 
             {/* </div> */}
                

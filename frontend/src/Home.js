@@ -3,7 +3,7 @@ import Hero from "./Hero"
 import Break from "./Break"
 import Reviews from "./Reviews"
 
-function Home({products, currentUser, setCart, reviews, bestsellers}) {
+function Home({products, currentUser, setCart, reviews, bestsellers, setReviews}) {
 
 
     return (
@@ -11,8 +11,8 @@ function Home({products, currentUser, setCart, reviews, bestsellers}) {
          {currentUser && <p>Welcome {currentUser.name}!</p>}
         
         <Hero></Hero>
-        <BestSellers bestsellers={bestsellers} setCart={setCart} products={products} ></BestSellers>
-        <Reviews reviews={reviews}></Reviews>
+        <BestSellers setReviews={setReviews} currentUser={currentUser} bestsellers={bestsellers} setCart={setCart} products={products} ></BestSellers>
+        <Reviews currentUser={currentUser} setReviews={setReviews}  reviews={reviews}></Reviews>
         <Break></Break>
         </div>
     )

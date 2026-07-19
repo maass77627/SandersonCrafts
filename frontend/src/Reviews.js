@@ -1,10 +1,21 @@
 
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 
 
+function Reviews({reviews, setReviews, currentUser}) {
+console.log(reviews)
 
-function Reviews({reviews}) {
+function handleDelete(id) {
+  fetch(`http://localhost:3000/reviews/${id}`, {
+    method: "DELETE"
+  })
+  
+  let updatedReviews = reviews.filter((review) => review.id !== id)
+  setReviews(updatedReviews)
+  
 
+}
 
          if (!reviews) {
             return
@@ -12,8 +23,9 @@ function Reviews({reviews}) {
 
     return (
         <div className="reviews">
-            { reviews.map((rev) => (
-                <div className="review-card">
+            { reviews && reviews.map((rev) => (
+                <div key={rev?.id} className="review-card">
+                {currentUser?.id === rev.user_id &&  <FaTrash onClick={() => handleDelete(rev.id)} className="trash-icon"></FaTrash>}
       <h3>{rev.user.name}</h3>
        <img className="review-image" src={rev.product.image_url}></img>
       <div className="review-rating">
