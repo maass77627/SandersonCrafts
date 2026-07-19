@@ -10,7 +10,7 @@ end
 def create
     review = Review.create(review_params)
    if review.valid?
-    render json: review, status: :created
+    render json: review, include: [:user, :product]
    else
     render json: {errors: review.errors.full_messages}, status: :unprocessable_entity
 

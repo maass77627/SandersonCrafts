@@ -6,7 +6,8 @@ class ProductsController < ApplicationController
             # when "none"
         #    products = Product.all
             when "highest_reviews"
-                products = Product.highest_rated
+                products = products.sort_by {|product| product.average_rating || 0}.reverse
+                # products = Product.highest_rated
             when "most_purchased"
                 products = products.order(purchase_count: :desc)
             when "price_high"
@@ -17,7 +18,8 @@ class ProductsController < ApplicationController
                 products = products.order(created_at: :desc)           
              end
 
-        render json: products, include: :reviews
+        # render json: products, include: reviews, methods: [:average_rating]
+        render json: products, include: :reviews, methods: [:average_rating]
 
     end
 

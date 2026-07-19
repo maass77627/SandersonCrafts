@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_12_233211) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_17_223009) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "cart_items", force: :cascade do |t|
-    t.bigint "cart_id", null: false
     t.datetime "created_at", null: false
+    t.bigint "order_id", null: false
     t.bigint "product_id", null: false
     t.integer "quantity"
     t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["order_id"], name: "index_cart_items_on_order_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
 
@@ -29,6 +29,26 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_12_233211) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "payment_status"
+    t.string "shipping_address"
+    t.string "shipping_city"
+    t.decimal "shipping_cost"
+    t.string "shipping_country"
+    t.string "shipping_name"
+    t.string "shipping_state"
+    t.string "shipping_zip"
+    t.string "status"
+    t.string "stripe_payment_intent_id"
+    t.decimal "subtotal"
+    t.decimal "tax"
+    t.decimal "total_price"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -63,9 +83,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_12_233211) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "orders"
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
 end

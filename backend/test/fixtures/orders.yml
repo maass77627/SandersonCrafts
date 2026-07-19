@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  subtotal: 9.99
+  tax: 9.99
+  shipping_cost: 9.99
+  total_price: 9.99
+  status: MyString
+  shipping_name: MyString
+  shipping_address: MyString
+  shipping_city: MyString
+  shipping_state: MyString
+  shipping_zip: MyString
+  shipping_country: MyString
+  payment_status: MyString
+  stripe_payment_intent_id: MyString
+
+two:
+  user: two
+  subtotal: 9.99
+  tax: 9.99
+  shipping_cost: 9.99
+  total_price: 9.99
+  status: MyString
+  shipping_name: MyString
+  shipping_address: MyString
+  shipping_city: MyString
+  shipping_state: MyString
+  shipping_zip: MyString
+  shipping_country: MyString
+  payment_status: MyString
+  stripe_payment_intent_id: MyString
