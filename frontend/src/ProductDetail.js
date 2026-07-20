@@ -9,7 +9,6 @@ import { useEffect} from "react";
 function ProductDetail({products, setCart, cart}) {
     const {id} = useParams()
     const [product, setProduct] = useState(null)
-    // const product = products.find((pro) => pro.id === Number(id))
      const [quantity, setQuantity] = useState(1)
 
 
@@ -39,10 +38,7 @@ function decrementQuantity() {
 
 
      function handleCart(product) {
-      // const updatedProduct = {...product, quantity: quantity}
-      
-
-      // setCart((prev) => [...prev, updatedProduct])
+     
          setCart((prev) => {
     const exists = prev.find((pro) => pro.id === product.id);
 
@@ -57,11 +53,7 @@ function decrementQuantity() {
     return [...prev, { ...product, quantity: 1 }];
   });
          
-    //   setCart((prev) => {
-    //   return  prev.map((pro) => pro.id === product.id ? pro.quantity + 1 : product)
-        
-    //  })
-      
+    
      }
 
         if (!product) {

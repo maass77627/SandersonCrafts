@@ -1,5 +1,5 @@
 
-
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 
 function AdminOrderDashBoard({orders}) {
@@ -31,6 +31,7 @@ console.log(orders)
                                     <td>{new Date(ord.created_at).toLocaleDateString()}</td>
                                     <td>{ord.total_price}</td>
                                     <td>{ord.status}</td>
+                                    <td><FaEdit  /></td> 
                                     {/* <td>{ord.status}</td> */}
                                 </tr>
                             ))

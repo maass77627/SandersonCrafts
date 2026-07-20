@@ -35,7 +35,7 @@ const [ formData, setFormData] = useState({
 
  function handleCreateOrder(e) {
     e.preventDefault()
-    console.log("CART BEFORE CHECKOUT:", cart)
+   
     fetch("http://localhost:3000/orders", {
         method: "POST",
         headers: {
@@ -48,13 +48,16 @@ const [ formData, setFormData] = useState({
             payment_status: "pending",
             total_price: total,
             status: "pending",
-            user_id: currentUser.id
+            user_id: currentUser?.id
         })
     })
     .then((res) => res.json())
     .then((json) => {
         console.log(json)
+        setCart([])
     })
+
+    
 
  }
  
@@ -66,7 +69,7 @@ const [ formData, setFormData] = useState({
 
                 <div className="shipping">
             <h1>Shipping Information</h1>
-            {/* <form className="shipping-form"> */}
+           
             <label>Full Name</label>
             <input  value={formData.shipping_name} name="shipping_name" onChange={(e) => handleChange(e)} className="input" type="text"></input>
            
@@ -81,7 +84,7 @@ const [ formData, setFormData] = useState({
             <input   value={formData.shipping_zip} onChange={(e) => handleChange(e)} name="shipping_zip" className="input" type="text"></input>
             <label>Country</label>
             <input   value={formData.shipping_country} onChange={(e) => handleChange(e)} name="shipping_country" className="input" type="text"></input>
-           {/* </form> */}
+          
 
                 </div>
               
