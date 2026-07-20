@@ -14,8 +14,7 @@ class OrdersController < ApplicationController
         order = Order.new(order_params)
 
         if order.save
-            puts "ITEMS RECEIVED:"
-            puts params[:items].inspect
+            
             params[:items].each do |item|
             order.cart_items.create(
             product_id: item[:id],

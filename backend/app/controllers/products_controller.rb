@@ -3,8 +3,7 @@ class ProductsController < ApplicationController
     def index
         products = Product.all
             case params[:sort]
-            # when "none"
-        #    products = Product.all
+            
             when "highest_reviews"
                 products = products.sort_by {|product| product.average_rating || 0}.reverse
                 # products = Product.highest_rated
@@ -18,7 +17,7 @@ class ProductsController < ApplicationController
                 products = products.order(created_at: :desc)           
              end
 
-        # render json: products, include: reviews, methods: [:average_rating]
+        
         render json: products, include: :reviews, methods: [:average_rating]
 
     end
@@ -37,8 +36,8 @@ class ProductsController < ApplicationController
 
     def update
         product = Product.find_by(id: params[:id])
-        if product
-            product.update(product_params)
+        
+           if product.update(product_params)
             render json: product
         else
             render json: {error: "Product not Found"}, status: :not_found
